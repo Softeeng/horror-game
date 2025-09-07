@@ -36,3 +36,36 @@ The game emphasizes **psychological tension, immersive exploration, and player i
    pip install ursina
 3. Run the game:
    python H_main.py
+
+---
+
+## Future Enhancements
+- Atmospheric sound design and dynamic lighting
+- Inventory system for artifacts
+- Randomized scares for replayability
+- Expanded whisper system with layered psychological effects
+
+---
+
+## 📌 Project Roadmap
+- [] Setup basic 3D environment with player movement
+- [] Expand rooms with multiple doorways
+- [] Implement lighting system
+- [] Add atmospheric sound design
+- [] Artifact collection system
+- [] Villain encounter logic
+- [] Whisper system (voices from past victims & villain thoughts)
+- [] Implement fixed ending sequence
+- [] Playtesting & bug fixing
+
+---
+
+## 🗂 Project Board  
+
+We use a [GitHub Project Board](https://github.com/users/Softeeng/projects/3) to plan and track development.  
+The board organizes tasks into **To Do**, **In Progress**, and **Done** so progress is transparent.  
+
+### Current Focus  
+- Expanding rooms with multiple doorways  
+- Implementing basic lighting and atmosphere  
+- Finalizing player movement  
