@@ -7,9 +7,8 @@ app = Ursina()
 # Player entity
 player = FirstPersonController()
 
-# Load rooms
-walls = []
-walls += H_rooms.room_1()
+# Load rooms (from H_rooms module)
+rooms = H_rooms.load_rooms()
 
 # Quit game function
 def input(key):
