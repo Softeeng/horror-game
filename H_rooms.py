@@ -1,8 +1,5 @@
 from ursina import *
 
-# Ground entity
-ground = Entity(model='plane', scale=(20,1,20), color=color.blue, position=(0,-1,0), collider='box')
-
 # Helper function to create walls with doorways
 def make_wall_with_door(position, axis='z', length=20, height=8, door_size=(4,4), wall_color=color.gray):
     ''' Creates a wall with a doorway opening in the center
@@ -19,12 +16,12 @@ def make_wall_with_door(position, axis='z', length=20, height=8, door_size=(4,4)
         entities.append(Entity(model='cube', scale=(door_w, height - door_h, 1), position=(x, y + door_h + (height - door_h)/2, z), color=wall_color, collider='box'))
     elif axis == 'x': # east/west
         # Front/back parts of the wall
-        entities.append(Entity(model='cube', scale=(1, height, length/2 - door_w/2), position=(x, y + height/2, z - (length/4 + door_w/4)),color=wall_color, coliider='box'))
+        entities.append(Entity(model='cube', scale=(1, height, length/2 - door_w/2), position=(x, y + height/2, z - (length/4 + door_w/4)), color=wall_color, collider='box'))
         entities.append(Entity(model='cube', scale=(1, height, length/2 - door_w/2), position=(x, y + height/2, z + (length/4 + door_w/4)), color=wall_color, collider='box'))
         # Top part of the wall
         entities.append(Entity(model='cube', scale=(1, height - door_h, door_w), position=(x, y + door_h + (height - door_h)/2, z), color=wall_color, collider='box'))
 
-        return entities
+    return entities
 # Rooms module
 def make_room(size=(20,8,20), position=(0,0,0), wall_color=color.gray, floor_color=color.blue, doorways=None, add_ceiling=True):
     """ This creates a simple room with no doorways. The doorways = list of directions where doorways should be placed
@@ -77,8 +74,14 @@ def foyer():
     """ Foyer with north (Library) and south (Basement) exits."""
     return make_room(position=(0,0,0), size=(20,8,20), wall_color=color.azure, floor_color=color.brown, doorways=["north", "south"], add_ceiling=True)
 
+def library():
+    """ Library with south (Foyer) exit and east doorway to the Ballroom."""
+    return make_room(position=(0,0,-20), # 25 units north of foyer
+                     size=(20,8,20), wall_color=color.violet, floor_color=color.dark_gray, doorways=["south", "east"], add_ceiling=True)
+
 # Load rooms function
 def load_rooms():
     rooms = []
     rooms += foyer()
+    rooms += library()
     return rooms
