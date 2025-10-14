@@ -22,6 +22,7 @@ def make_wall_with_door(position, axis='z', length=20, height=8, door_size=(4,4)
         entities.append(Entity(model='cube', scale=(1, height - door_h, door_w), position=(x, y + door_h + (height - door_h)/2, z), color=wall_color, collider='box'))
 
     return entities
+
 # Rooms module
 def make_room(size=(20,8,20), position=(0,0,0), wall_color=color.gray, floor_color=color.blue, doorways=None, add_ceiling=True):
     """ This creates a simple room with no doorways. The doorways = list of directions where doorways should be placed
@@ -78,10 +79,16 @@ def library():
     """ Library with south (Foyer) exit and east doorway to the Ballroom."""
     return make_room(position=(0,0,-20), # 25 units north of foyer
                      size=(20,8,20), wall_color=color.violet, floor_color=color.dark_gray, doorways=["south", "east"], add_ceiling=True)
+def ballroom():
+    """ Ballroom east of Library; connects west - Library, east - Dining Room, north - Study"""
+    return make_room(position=(20,0,-20), # 20 units east of Library
+                     size=(20,8,20), wall_color=color.orange, floor_color=color.rgb(160,82,45), # warm wooden color
+                     doorways=["west", "east", "north"], add_ceiling=True)
 
 # Load rooms function
 def load_rooms():
     rooms = []
     rooms += foyer()
     rooms += library()
+    rooms += ballroom()
     return rooms
