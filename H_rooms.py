@@ -61,8 +61,8 @@ def make_room(size=(20,8,20), position=(0,0,0), wall_color=color.gray, floor_col
     else:
         parts.append(Entity(model='cube', scale=(1,h,d), position=(x - w/2, y + h/2, z), color=wall_color, collider='box'))
     
-    # Floor
-    parts.append(Entity(model='cube', scale=(w,1,d), position=(x, y - 0.5, z), color=floor_color, collider='box'))
+    # Floor (use a thin cube so collider has volume)
+    parts.append(Entity(model='cube', scale=(w,1,d), position=(x, y, z), color=floor_color, collider='box'))
 
     # Add ceiling
     if add_ceiling:
@@ -84,6 +84,12 @@ def ballroom():
     return make_room(position=(20,0,-20), # 20 units east of Library
                      size=(20,8,20), wall_color=color.orange, floor_color=color.rgb(160,82,45), # warm wooden color
                      doorways=["west", "east", "north"], add_ceiling=True)
+def dining_room():
+    """Dining Room east of Ballroom; connects west - Ballroom and south - Kitchen"""
+    return make_room(position=(40, 0, -20), # 20 units east of Ballroom
+                     size=(20, 8, 20), wall_color=color.red, floor_color=color.dark_gray,
+                     doorways=["west", "south"], # west to Ballroom, south to Kitchen
+                     add_ceiling=True)
 
 # Load rooms function
 def load_rooms():
@@ -91,4 +97,5 @@ def load_rooms():
     rooms += foyer()
     rooms += library()
     rooms += ballroom()
+    rooms += dining_room()
     return rooms
